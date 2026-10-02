@@ -1,0 +1,189 @@
+/* ===== COLORS (taken from the logo) — change only here =====
+   primary   = logo's red ring
+   secondary = logo's golden-yellow ring
+   accent    = logo's orange calligraphy
+   dark      = logo's deep maroon centre            */
+:root{
+  --primary-color:#C8201A;
+  --secondary-color:#F6B400;
+  --accent-color:#EE5A1C;
+  --dark-color:#3A1112;
+  --light-color:#FFF7E8;
+  --text-color:#2B1715;
+  --border-color:#EAD8B5;
+  --hero-image:none; /* e.g. url('fort.jpg') */
+}
+html{scroll-behavior:smooth}
+body{font-family:'Mukta',sans-serif;color:var(--text-color);background:var(--light-color);font-size:1.08rem;line-height:1.7}
+h1,h2,h3,h4{font-family:'Tiro Devanagari Marathi',serif;color:var(--dark-color)}
+:focus-visible{outline:3px solid var(--secondary-color);outline-offset:2px}
+
+/* Header */
+.site-header{background:var(--dark-color);border-bottom:4px solid var(--secondary-color);z-index:1030}
+.logo-container img{height:52px;width:auto;max-width:100%;object-fit:contain;display:block}
+.brand-name{color:var(--secondary-color);font-family:'Tiro Devanagari Marathi',serif;font-size:1.15rem}
+.navbar-toggler{color:#fff;font-size:1.8rem;border:0;padding:.1rem .5rem}
+.nav-link{color:#fff !important;font-weight:600;border-bottom:3px solid transparent}
+.nav-link:hover,.nav-link.active{color:var(--secondary-color) !important;border-bottom-color:var(--secondary-color)}
+
+/* Hero */
+.hero{background:var(--hero-image) center/cover,radial-gradient(circle at 50% 0,var(--primary-color) 0,var(--dark-color) 70%);color:#fff;padding:4rem 0 5rem;position:relative}
+.hero::after{content:"";position:absolute;inset:auto 0 0 0;height:36px;background:var(--light-color);
+ clip-path:polygon(0 100%,0 40%,4% 40%,4% 0,8% 0,8% 40%,12% 40%,12% 0,16% 0,16% 40%,20% 40%,20% 0,24% 0,24% 40%,28% 40%,28% 0,32% 0,32% 40%,36% 40%,36% 0,40% 0,40% 40%,44% 40%,44% 0,48% 0,48% 40%,52% 40%,52% 0,56% 0,56% 40%,60% 40%,60% 0,64% 0,64% 40%,68% 40%,68% 0,72% 0,72% 40%,76% 40%,76% 0,80% 0,80% 40%,84% 40%,84% 0,88% 0,88% 40%,92% 40%,92% 0,96% 0,96% 40%,100% 40%,100% 100%)} /* fort battlement edge */
+.hero-logo{width:min(220px,55vw);height:auto;border-radius:50%;box-shadow:0 10px 40px rgba(0,0,0,.45);margin-bottom:1.2rem}
+.hero-sub{color:var(--secondary-color);font-weight:700;font-size:1.2rem;margin-bottom:.3rem}
+.hero h1{color:#fff;font-size:clamp(2rem,6vw,3.6rem);line-height:1.3}
+.hero-text{max-width:620px;margin:1rem auto 1.8rem;font-size:1.2rem}
+.hero .container{animation:rise .9s ease both}
+@keyframes rise{from{opacity:0;transform:translateY(24px)}}
+
+/* Buttons */
+.btn{font-weight:700;border-radius:50px;padding:.6rem 1.6rem;transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.2)}
+.btn-gold{background:var(--secondary-color);color:var(--dark-color);border:0}
+.btn-gold:hover{background:var(--accent-color);color:#fff}
+.btn-brand{background:var(--primary-color);color:#fff;border:0}
+.btn-brand:hover{background:var(--dark-color);color:#fff}
+
+/* Sections */
+.section{padding:4.5rem 0}
+.section-alt{background:#fff;border-block:1px solid var(--border-color)}
+.narrow{max-width:820px}
+.section-title{text-align:center;font-size:clamp(1.7rem,4vw,2.4rem);margin-bottom:1rem}
+.section-title::after{content:"";display:block;width:90px;height:5px;border-radius:5px;margin:.6rem auto 0;background:linear-gradient(90deg,var(--primary-color),var(--secondary-color))}
+.lead-text{text-align:center;max-width:760px;margin:0 auto 2rem}
+.card-x,.info{background:#fff;border:1px solid var(--border-color);border-radius:18px;padding:1.6rem;height:100%;box-shadow:0 4px 16px rgba(58,17,18,.07);transition:transform .25s,box-shadow .25s}
+.card-x{text-align:center;border-top:5px solid var(--primary-color)}
+.card-x i{font-size:2.2rem;color:var(--accent-color)}
+.card-x h3{font-size:1.25rem;margin-top:.5rem}
+.info{border-left:5px solid var(--secondary-color)}
+.info h4{font-size:1.15rem;color:var(--primary-color)}
+.card-x:hover,.info:hover{transform:translateY(-4px);box-shadow:0 12px 26px rgba(58,17,18,.14)}
+.dummy{background:var(--secondary-color);color:var(--dark-color);font-size:.75rem;padding:0 .5rem;border-radius:20px;font-weight:700}
+
+/* Form */
+.form-card{max-width:820px;background:var(--light-color);border:1px solid var(--border-color);border-top:6px solid var(--primary-color);border-radius:18px;padding:2rem;box-shadow:0 10px 30px rgba(58,17,18,.1)}
+.form-label,legend.form-label{font-weight:700;font-size:1rem;float:none}
+.req{color:var(--primary-color)}
+.form-control,.form-select{border:2px solid var(--border-color);border-radius:10px;padding:.6rem .8rem;font-size:1.05rem}
+.form-control:focus,.form-select:focus{border-color:var(--accent-color);box-shadow:0 0 0 .25rem rgba(238,90,28,.2)}
+.form-check-input:checked{background-color:var(--primary-color);border-color:var(--primary-color)}
+.is-invalid{border-color:var(--primary-color) !important;background:#fff1ef}
+.err{display:none;color:var(--primary-color);font-size:.92rem;font-weight:600;margin-top:.25rem}
+.err.show{display:block}
+
+/* Rules / notice */
+.accordion-button:not(.collapsed){background:var(--dark-color);color:var(--secondary-color)}
+.accordion-button{font-weight:700}
+.note{color:var(--primary-color);font-weight:600}
+.notice{display:flex;gap:1rem;align-items:flex-start;background:#fff;border:2px solid var(--secondary-color);border-left:10px solid var(--secondary-color);border-radius:14px;padding:1.3rem}
+.notice i{font-size:2rem;color:var(--accent-color)}
+.notice h3{font-size:1.3rem;margin-bottom:.2rem}
+
+/* Footer */
+.site-footer{background:var(--dark-color);color:#f3e6cf;padding:3rem 0 1.5rem;border-top:6px solid var(--secondary-color)}
+.site-footer h2{color:var(--secondary-color)}
+.social a{color:#fff;font-size:1.4rem;margin:0 .5rem}
+.social a:hover{color:var(--secondary-color)}
+.admin-link{color:#b9a27a;text-decoration:none;font-size:.8rem}
+
+/* Misc */
+.ok-icon{font-size:4rem;color:#2e8b4a}
+.reg-id{font-size:1.2rem;background:var(--light-color);border:2px dashed var(--secondary-color);border-radius:10px;padding:.5rem}
+.to-top{position:fixed;right:18px;bottom:18px;width:46px;height:46px;border-radius:50%;border:0;background:var(--primary-color);color:#fff;font-size:1.3rem;opacity:0;pointer-events:none;transition:opacity .3s;z-index:1040}
+.to-top.show{opacity:1;pointer-events:auto}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .6s,transform .6s}
+.reveal.in{opacity:1;transform:none}
+
+@media (max-width:575px){
+  .brand-name{font-size:.95rem}.logo-container img{height:42px}
+  .section{padding:3rem 0}.form-card{padding:1.2rem}.btn-lg{width:100%}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}*{animation:none !important;transition:none !important}.reveal{opacity:1;transform:none}
+}
+
+/* ===== Hero banner additions ===== */
+.hero-tagline{font-family:'Tiro Devanagari Marathi',serif;color:#fff;font-size:1.15rem;margin-bottom:1rem;opacity:.95}
+.hero-edition{display:inline-flex;flex-wrap:wrap;justify-content:center;gap:.4rem .8rem;margin-bottom:1rem;padding:.35rem 1.1rem;border:2px solid var(--secondary-color);border-radius:50px;background:rgba(58,17,18,.55);color:var(--secondary-color);font-weight:700;font-size:1.1rem}
+.hero-edition span+span::before{content:"•";margin-right:.8rem;color:var(--accent-color)}
+.foot-tagline{font-family:'Tiro Devanagari Marathi',serif;color:var(--secondary-color)}
+.foot-meta i{color:var(--secondary-color);margin-right:.3rem}
+
+/* ===== Rules & Regulations (नियम आणि अटी) ===== */
+.rules-list{list-style:none;margin:0;padding:0;display:grid;gap:1.25rem}
+.rule-card{display:flex;gap:1.1rem;align-items:flex-start;background:#fff;border:1px solid var(--border-color);border-left:6px solid var(--secondary-color);border-radius:18px;padding:1.4rem 1.5rem;box-shadow:0 4px 16px rgba(58,17,18,.07);transition:transform .25s,box-shadow .25s,border-color .25s,opacity .6s}
+.rule-card:hover{transform:translateY(-4px);box-shadow:0 12px 26px rgba(58,17,18,.14);border-left-color:var(--primary-color)}
+.rule-num{flex:0 0 auto;width:56px;height:56px;border-radius:50%;display:grid;place-items:center;font-family:'Tiro Devanagari Marathi',serif;font-size:1.5rem;line-height:1;color:#fff;background:linear-gradient(135deg,var(--primary-color),var(--accent-color));border:3px solid var(--secondary-color);box-shadow:0 4px 10px rgba(200,32,26,.3)}
+.rule-body{flex:1;min-width:0}
+.rule-body h3{font-size:1.3rem;margin:.1rem 0 .35rem;color:var(--primary-color)}
+.rule-body p{margin:0}
+
+.fort-chips{list-style:none;display:flex;flex-wrap:wrap;gap:.6rem;margin:.9rem 0 0;padding:0}
+.fort-chips li{display:inline-flex;align-items:center;gap:.4rem;padding:.3rem .95rem;border-radius:50px;background:var(--light-color);border:2px solid var(--secondary-color);color:var(--dark-color);font-weight:700;font-size:.98rem;transition:background .2s,color .2s,transform .2s}
+.fort-chips li i{color:var(--accent-color);font-size:.9rem}
+.fort-chips li:hover{background:var(--secondary-color);transform:translateY(-2px)}
+
+.rule-important{display:flex;gap:.8rem;align-items:flex-start;margin-top:1rem;padding:1rem 1.2rem;border-radius:14px;color:#fff;background:linear-gradient(135deg,var(--dark-color),var(--primary-color));border-left:8px solid var(--secondary-color);box-shadow:0 6px 16px rgba(58,17,18,.25)}
+.rule-important i{color:var(--secondary-color);font-size:1.4rem;margin-top:.15rem}
+.rule-important strong{color:var(--secondary-color);font-family:'Tiro Devanagari Marathi',serif;font-size:1.15rem}
+
+.rules-foot{display:flex;gap:.9rem;align-items:flex-start;margin-top:2rem;padding:1.1rem 1.3rem;background:#fff;border:2px dashed var(--secondary-color);border-radius:14px}
+.rules-foot i{font-size:1.5rem;color:var(--accent-color)}
+.rules-foot strong{color:var(--primary-color)}
+
+@media (max-width:575px){
+  .rule-card{flex-direction:column;gap:.7rem;padding:1.2rem}
+  .rule-num{width:48px;height:48px;font-size:1.3rem}
+  .rule-body h3{font-size:1.15rem}
+  .rule-important{padding:.9rem}
+  .hero-edition{font-size:1rem}
+}
+
+/* =====================================================================
+   GALLERY SECTION (मागील वर्षाचे क्षणचित्रे) — all classes start with gal-
+   ===================================================================== */
+.gallery-section[hidden]{display:none}
+.gal-sub{display:flex;justify-content:center;margin:0 auto 2rem}
+.gal-sub span{display:inline-flex;align-items:center;gap:.55rem;padding:.35rem 1.3rem;border:2px solid var(--secondary-color);border-radius:50px;background:var(--light-color);color:var(--primary-color);font-family:'Tiro Devanagari Marathi',serif;font-weight:700;font-size:1.15rem}
+.gal-sub i{color:var(--accent-color);font-size:.95rem}
+
+/* Grid: mobile 2 / tablet 3 / desktop 4 */
+.gal-grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.7rem}
+@media (min-width:768px){.gal-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}}
+@media (min-width:992px){.gal-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:1.2rem}}
+
+.gal-grid li{animation:galIn .5s ease both}
+@keyframes galIn{from{opacity:0;transform:translateY(12px)}}
+
+.gal-item{position:relative;display:block;width:100%;padding:0;border:0;aspect-ratio:4/3;overflow:hidden;border-radius:14px;background:var(--border-color);box-shadow:0 4px 16px rgba(58,17,18,.14);cursor:zoom-in;transition:box-shadow .3s}
+.gal-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease}
+.gal-item:hover{box-shadow:0 12px 26px rgba(58,17,18,.25)}
+.gal-item:hover img,.gal-item:focus-visible img{transform:scale(1.06)}
+
+.gal-overlay{position:absolute;inset:0;display:flex;align-items:flex-end;justify-content:center;padding:.8rem .6rem;text-align:center;font-family:'Tiro Devanagari Marathi',serif;font-size:1.02rem;line-height:1.3;color:var(--secondary-color);background:linear-gradient(to top,rgba(58,17,18,.88) 0,rgba(58,17,18,.35) 45%,rgba(58,17,18,0) 75%);border-bottom:4px solid var(--secondary-color);border-radius:14px;opacity:0;transition:opacity .3s}
+.gal-item:hover .gal-overlay,.gal-item:focus-visible .gal-overlay{opacity:1}
+/* touch screens have no hover: keep the caption visible */
+@media (hover:none){.gal-overlay{opacity:1;font-size:.85rem;background:linear-gradient(to top,rgba(58,17,18,.8) 0,rgba(58,17,18,0) 55%)}}
+
+/* Lightbox */
+.gal-lightbox{position:fixed;inset:0;z-index:2000;display:none;align-items:center;justify-content:center;padding:3.6rem 1rem 4.2rem;background:rgba(30,9,10,.95)}
+.gal-lightbox.open{display:flex;animation:galFade .25s ease both}
+@keyframes galFade{from{opacity:0}}
+.gal-lb-figure{margin:0;max-width:min(1100px,100%);display:flex;flex-direction:column;align-items:center;min-height:0}
+.gal-lb-img{display:block;max-width:100%;max-height:calc(100vh - 9rem);max-height:calc(100dvh - 9rem);width:auto;height:auto;object-fit:contain;border-radius:10px;border:3px solid var(--secondary-color);box-shadow:0 14px 50px rgba(0,0,0,.6);background:var(--dark-color)}
+.gal-lb-cap{display:flex;flex-wrap:wrap;gap:.2rem .9rem;justify-content:center;margin-top:.8rem;color:#f3e6cf;font-family:'Tiro Devanagari Marathi',serif;font-size:1.1rem}
+.gal-lb-cap small{color:var(--secondary-color);font-family:'Mukta',sans-serif;font-weight:700;font-size:1rem}
+.gal-btn{position:absolute;z-index:1;width:46px;height:46px;display:grid;place-items:center;padding:0;border-radius:50%;border:2px solid var(--secondary-color);background:rgba(58,17,18,.85);color:var(--secondary-color);font-size:1.3rem;line-height:1;cursor:pointer;transition:background .2s,color .2s}
+.gal-btn:hover{background:var(--secondary-color);color:var(--dark-color)}
+.gal-close{top:12px;right:12px}
+.gal-prev{left:14px;top:50%;transform:translateY(-50%)}
+.gal-next{right:14px;top:50%;transform:translateY(-50%)}
+.gal-lightbox.single .gal-prev,.gal-lightbox.single .gal-next{display:none}
+@media (max-width:767px){
+  .gal-lightbox{padding:3.6rem .6rem 5rem}
+  .gal-prev,.gal-next{top:auto;bottom:14px;transform:none}
+  .gal-prev{left:calc(50% - 58px)}
+  .gal-next{right:calc(50% - 58px)}
+  .gal-lb-img{max-height:calc(100vh - 11rem);max-height:calc(100dvh - 11rem)}
+}
