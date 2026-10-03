@@ -15,18 +15,19 @@ const SHEET_NAME = "Registrations";
 const ID_PREFIX = "SSR-GAD-2026-";      // -> SSR-GAD-2026-0001, 0002, ...
 const TIME_ZONE = "Asia/Kolkata";
 
-// Column order (A to J). Do not reorder.
+// Column order (A to K). Do not reorder.
 const HEADERS = [
   "Registration ID",          // A
   "Registration Date",        // B
   "Registration Time",        // C
   "Registration Type",        // D
   "Group / Personal Name",    // E
-  "Address",                  // F
-  "Fort Name",                // G
-  "Fort Type",                // H
-  "Contact Number",           // I
-  "Alternate Contact Number"  // J
+  "Area",                     // F
+  "Address",                  // G
+  "Fort Name",                // H
+  "Fort Type",                // I
+  "Contact Number",           // J
+  "Alternate Contact Number"  // K
 ];
 
 /* ---------------------------------------------------------------------
@@ -41,6 +42,7 @@ function doPost(e) {
     const data = {
       type:     clean_(p.type, 30),
       name:     clean_(p.name, 200),
+      area:     clean_(p.area, 100),
       address:  clean_(p.address, 500),
       fort:     clean_(p.fort, 200),
       fortType: clean_(p.fortType, 50),
@@ -49,7 +51,8 @@ function doPost(e) {
     };
 
     // Server-side validation (never trust the browser only)
-    if (!data.name || !data.address || !data.fort || !/^\d{10}$/.test(data.phone) ||
+    if (!data.name || !data.area || !data.address || !data.fort ||
+        !/^\d{10}$/.test(data.phone) ||
         (data.phone2 && !/^\d{10}$/.test(data.phone2))) {
       return json_({ success: false, message: "Registration failed" });
     }
@@ -79,6 +82,7 @@ function doPost(e) {
       Utilities.formatDate(now, TIME_ZONE, "HH:mm:ss"),
       data.type,
       data.name,
+      data.area,
       data.address,
       data.fort,
       data.fortType,
@@ -121,6 +125,17 @@ function getSheet_() {
   const ss = SpreadsheetApp.openById(SPREADSHEET_ID);   // ID stays here, never on the website
   const sheet = ss.getSheetByName(SHEET_NAME) || ss.insertSheet(SHEET_NAME);
 
+  // One-time migration for sheets created before the Area column existed:
+  // they have "Address" in column F. Insert a new column F so every existing
+  // row shifts right (Address -> G ... Alternate Contact -> K) and Area stays
+  // blank for old rows. Runs only once; no data is deleted.
+  if (sheet.getLastRow() >= 1 && String(sheet.getRange(1, 6).getValue()).trim() === "Address") {
+    sheet.insertColumnBefore(6);
+  }
+  if (sheet.getMaxColumns() < HEADERS.length) {
+    sheet.insertColumnsAfter(sheet.getMaxColumns(), HEADERS.length - sheet.getMaxColumns());
+  }
+
   // Headers (row 1)
   const headerRange = sheet.getRange(1, 1, 1, HEADERS.length);
   headerRange.setNumberFormat("@");
@@ -135,8 +150,13 @@ function getSheet_() {
     sheet.getRange(2, 1, sheet.getMaxRows() - 1, HEADERS.length).setNumberFormat("@");
   }
 
-  // Filter on header row (created once)
-  if (!sheet.getFilter()) {
+  // Filter on header row (created once; re-created if it does not cover all columns)
+  let filter = sheet.getFilter();
+  if (filter && filter.getRange().getNumColumns() < HEADERS.length) {
+    filter.remove();
+    filter = null;
+  }
+  if (!filter) {
     sheet.getRange(1, 1, Math.max(sheet.getLastRow(), 2), HEADERS.length).createFilter();
   }
 

@@ -4,7 +4,7 @@
    Every submission is appended as a new row. The Spreadsheet ID lives ONLY
    inside Code.gs (never in this file).
    ===================================================================== */
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzLm8iVbhYleJnS8Qom8DwwQkwGyqhqzFbS3zQoIpd_-nHh4mYe8Ca9W6ijSmqg9ibE/exec";
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycby2rXiK9MSJ7KV_h3eTKfqZJ538YHRSi5x_RefIIYo1eIhpOWUYADvSsElaCnx490k/exec";
 
 const REQUEST_TIMEOUT_MS = 30000;                 // give up after 30 seconds
 const BTN_LABEL   = 'नोंदणी करा';
@@ -13,7 +13,7 @@ const BTN_LOADING = 'नोंदणी होत आहे...';
 /* ---------- Helpers ---------- */
 const $ = id => document.getElementById(id);
 const form = $('regForm');
-const fields = ['name','address','fort','phone','phone2'];
+const fields = ['name','area','address','fort','phone','phone2'];
 
 function setError(id, msg){
   const el = $(id), err = $('e-'+id);
@@ -36,6 +36,7 @@ function validateField(id){
   let msg = '';
   switch(id){
     case 'name': if(!v) msg='कृपया नाव / ग्रुपचे नाव प्रविष्ट करा.'; break;
+    case 'area': if(!v) msg='Please select your area.'; break;
     case 'address': if(!v) msg='कृपया पत्ता प्रविष्ट करा.'; break;
     case 'fort': if(!v) msg='कृपया दुर्गाचे नाव प्रविष्ट करा.'; break;
     case 'phone': if(!/^\d{10}$/.test(v)) msg='कृपया १० अंकी संपर्क क्रमांक प्रविष्ट करा.'; break;
@@ -78,6 +79,7 @@ form.addEventListener('submit', async e => {
   const payload = {
     type: form.elements['type'].value,
     name: $('name').value.trim(),
+    area: $('area').value,
     address: $('address').value.trim(),
     fort: $('fort').value.trim(),
     fortType: $('fortType').value,
